@@ -38,7 +38,7 @@ public class Ex1_T134906_Yen extends JFrame {
 		getContentPane().add(lblPassword);
 		
 		JCheckBox chckbxRememberMe = new JCheckBox("Remember Me");
-		chckbxRememberMe.setBounds(30, 196, 97, 23);
+		chckbxRememberMe.setBounds(30, 196, 124, 23);
 		getContentPane().add(chckbxRememberMe);
 		
 		JButton btnLogin = new JButton("Login");
@@ -48,9 +48,12 @@ public class Ex1_T134906_Yen extends JFrame {
 				char[] passArray = txtPassword.getPassword();
 				String password = new String(passArray);
 				if (userName.equals("admin")&& password.equals("root")){
-					JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Hello"+userName);
+					// JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Hello"+userName);
+					MainWindow mainGUI = new MainWindow ();
+					mainGUI.setVisible(true);
+					Ex1_T134906_Yen.this.setVisible(false);
 				}else{
-					JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Fail:(");
+					JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Fail :(");
 				}
 				
 			}
