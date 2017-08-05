@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class Ex1_T134906_Yen extends JFrame {
 	//Hàm dựng
 	public Ex1_T134906_Yen(){
 		getContentPane().setLayout(null);
+		//setSize(300, 400);
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setLocation(30, 50);
 		lblUsername.setSize(80, 25);

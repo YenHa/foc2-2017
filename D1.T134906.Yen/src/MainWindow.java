@@ -31,13 +31,15 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setTitle("Hoangyen");
 	}
 
 }
