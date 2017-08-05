@@ -65,17 +65,22 @@ public class MainWindow extends JFrame {
 		JMenu mnTools = new JMenu("Tools");
 		menuBar.add(mnTools);
 		contentPane = new JDesktopPane();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		
 		// xu ly su kien
 		
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JInternalFrame newWindow = new JInternalFrame("New window 1", true, true, true);
+				
 				newWindow.setVisible(true);
 				newWindow.setSize(300, 300);
 				contentPane.add(newWindow);
+				
 			}
 		});
 		
