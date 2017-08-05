@@ -1,18 +1,19 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import javax.swing.JTextField;
 
 
 public class Ex1_T134906_Yen extends JFrame {
@@ -44,17 +45,7 @@ public class Ex1_T134906_Yen extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String userName = jtf.getText();
-				char[] passArray = txtPassword.getPassword();
-				String password = new String(passArray);
-				if (userName.equals("admin")&& password.equals("root")){
-					// JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Hello"+userName);
-					MainWindow mainGUI = new MainWindow ();
-					mainGUI.setVisible(true);
-					Ex1_T134906_Yen.this.setVisible(false);
-				}else{
-					JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Fail :(");
-				}
+				login(jtf);
 				
 			}
 		});
@@ -74,6 +65,29 @@ public class Ex1_T134906_Yen extends JFrame {
 				txtPassword.setBackground(new Color(153, 255,100));
 			}
 		});
+		txtPassword.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER){
+					login(jtf);
+					
+				}
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		txtPassword.setBounds(30, 158, 150, 20);
 		getContentPane().add(txtPassword);
 	}
@@ -85,5 +99,20 @@ public class Ex1_T134906_Yen extends JFrame {
 		gui.setDefaultCloseOperation(
 			JFrame.EXIT_ON_CLOSE);
 		gui.setSize(400, 300);
+	}
+
+
+	private void login(JTextField jtf) {
+		String userName = jtf.getText();
+		char[] passArray = txtPassword.getPassword();
+		String password = new String(passArray);
+		if (userName.equals("admin")&& password.equals("root")){
+			// JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Hello"+userName);
+			MainWindow mainGUI = new MainWindow ();
+			mainGUI.setVisible(true);
+			Ex1_T134906_Yen.this.setVisible(false);
+		}else{
+			JOptionPane.showMessageDialog(Ex1_T134906_Yen.this, "Fail :(");
+		}
 	}
 }
