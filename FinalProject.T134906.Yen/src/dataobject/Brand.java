@@ -1,4 +1,4 @@
-package dataoject;
+package dataobject;
 
 public class Brand {
 	private int id;

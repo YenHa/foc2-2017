@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import dataoject.Brand;
-import dataoject.Category;
-import dataoject.UnitOfMeasure;
+import dataobject.Brand;
+import dataobject.Category;
+import dataobject.UnitOfMeasure;
 
 public class SQLiteDB {
 	private Connection connect() {
@@ -36,7 +36,7 @@ public class SQLiteDB {
 				// rs.getString("productname")+ "\t" +
 				// rs.getDouble("uniprice"));
 
-				System.out.format("%3d %-40s %7.2f %4d\n", rs.getInt("id"), rs.getString("productname"),
+				System.out.format("%3d %-40s %7.2f \n", rs.getInt("id"), rs.getString("productname"),
 						rs.getDouble("unitprice"));
 
 			}
@@ -143,12 +143,7 @@ public class SQLiteDB {
 				ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
 				UnitOfMeasure unit = new UnitOfMeasure(rs.getInt("id"), rs.getString("unitname"));
-				//cat.setCategoryId(rs.getInt("categoryid"));
-				//cat.setCategoryName(rs.getString("categoryname"));
 				
-				//categoryList.add(rs.getString("categoryname"));
-				//System.out.format("%3d %-40s %7.2f %4d\n", rs.getInt("categoryid"), rs.getString("categoryname"),
-//						rs.getDouble("description"));
 				unitofmeasureList.add(unit);
 			}
 			return unitofmeasureList;

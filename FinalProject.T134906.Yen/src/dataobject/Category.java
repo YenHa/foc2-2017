@@ -1,4 +1,4 @@
-package dataoject;
+package dataobject;
 
 public class Category {
 public Category(int categoryId, String categoryName) {

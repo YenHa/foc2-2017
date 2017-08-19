@@ -1,4 +1,4 @@
-package dataoject;
+package dataobject;
 
 public class UnitOfMeasure {
 	private int id;

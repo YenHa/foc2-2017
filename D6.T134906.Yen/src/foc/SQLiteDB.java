@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import javax.swing.text.AbstractDocument.BranchElement;
+
 public class SQLiteDB {
 	private Connection connect() {
-		String url = "jdbc:sqlite:sales.db";
+		String url = "jdbc:sqlite:foc2warehouse.db";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url);
@@ -82,6 +84,29 @@ public class SQLiteDB {
 	}
 	
 }
+	public Vector<Brand> getAllCategories() {
+		String sql = "SELECT *FROM categories";
+		Vector<Category> categoryList = new Vector<>();
+		try (Connection conn = connect();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+			while (rs.next()) {
+				Category cat = new Category();
+				cat.setCategoryId(rs.getInt("categoryid"));
+				cat.setCategoryName(rs.getString("categoryname"));
+				
+				//categoryList.add(rs.getString("categoryname"));
+				//System.out.format("%3d %-40s %7.2f %4d\n", rs.getInt("categoryid"), rs.getString("categoryname"),
+//						rs.getDouble("description"));
+
+			}
+			return categoryList;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
 	public Vector<Category> getAllCategories() {
 		String sql = "SELECT *FROM categories";
 		Vector<Category> categoryList = new Vector<>();
@@ -104,6 +129,7 @@ public class SQLiteDB {
 		}
 		return null;
 	}
+	
 }
 
 
