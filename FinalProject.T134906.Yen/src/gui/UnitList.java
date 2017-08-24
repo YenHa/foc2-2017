@@ -7,6 +7,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,15 +17,19 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import da.CategoryDA;
 import da.ProductDA;
+import da.UnitOfMeasureDA;
+import dataobject.Category;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class ProductList extends JFrame implements ActionListener{
+public class UnitList extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTable tableProduct;
-	ProductDA productDA;
+	private JTable tableCategory;
+	UnitOfMeasureDA unitOfMeasureDA;
 	private JPanel panelTop;
 	private JButton btnUpdate;
 	private JButton btnAdd;
@@ -36,7 +41,7 @@ public class ProductList extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ProductList frame = new ProductList();
+					UnitList frame = new UnitList();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,8 +53,8 @@ public class ProductList extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public ProductList() {
-		setTitle("Product Management");
+	public UnitList() {
+		setTitle("UnitOfMeasure Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -59,9 +64,9 @@ public class ProductList extends JFrame implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		tableProduct = new JTable();
-		getProductList();
-		scrollPane.setViewportView(tableProduct);
+		tableCategory = new JTable();
+		getUnitList();
+		scrollPane.setViewportView(tableCategory);
 		
 		panelTop = new JPanel();
 		panelTop.setPreferredSize(new Dimension(200, 30));
@@ -79,39 +84,39 @@ public class ProductList extends JFrame implements ActionListener{
 		panelTop.add(btnUpdate);
 	}
 
-	private void getProductList() {
-		productDA = new ProductDA();
-		DefaultTableModel model = productDA.getProducts();
-		tableProduct.setModel(model);
+	private void getUnitList() {
+		unitOfMeasureDA = new UnitOfMeasureDA();
+		DefaultTableModel model = unitOfMeasureDA.getUnitOfMeasure();
+		tableCategory.setModel(model);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnAdd){
-			addProduct();
+			addUnit();
 		}else if(e.getSource() == btnUpdate){
-			updateProduct();
+			updateUnit();
 		}
 		
 	}
 
-	private void updateProduct() {
+	private void updateUnit() {
 		
-		int selectedRowIndex = tableProduct.getSelectedRow();
+		int selectedRowIndex = tableCategory.getSelectedRow();
 		if(selectedRowIndex != -1){ 
-			int selectedProductID = (int) tableProduct.getModel().getValueAt(selectedRowIndex, 0);
-			UpdateProduct updateGUI = new UpdateProduct(selectedProductID);
+			int selectedunitID = (int) tableCategory.getModel().getValueAt(selectedRowIndex, 0);
+			UpdateUnit updateGUI = new UpdateUnit(selectedunitID);
 			updateGUI.setVisible(true);
-			ProductList.this.dispose();
+			UnitList.this.dispose();
 			
 		}
 				
 	}
 
-	private void addProduct() {
-		AddProduct addGui = new AddProduct();
+	private void addUnit() {
+		AddUnit addGui = new AddUnit();
 		addGui.setVisible(true);
-		ProductList.this.dispose();
+		UnitList.this.dispose();
 		
 	}
 }
